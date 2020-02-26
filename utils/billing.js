@@ -6,4 +6,4 @@ export const noteStorageCost = (notesQty) => {
       : 1;
 
   return rate * notesQty * 100;
-}
+};

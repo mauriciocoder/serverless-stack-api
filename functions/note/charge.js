@@ -3,7 +3,7 @@ import { noteStorageCost } from "../../utils/billing";
 import { success, failure } from "../../utils/http";
 
 export async function main(event, context) {
-  const { notesQty, stripePublicKey } = JSON.parse(event.body);
+  const { notesQty, source } = JSON.parse(event.body);
   const amount = noteStorageCost(notesQty);
   const description = "Scratch charge";
 
@@ -12,7 +12,7 @@ export async function main(event, context) {
 
   try {
     await stripe.charges.create({
-      stripePublicKey,
+      source,
       amount,
       description,
       currency: "usd"
